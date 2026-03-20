@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pakistan International School - Excellence in Education</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="page">
+        <!-- Header/Navigation -->
+        <header class="site-header">
+            <div>
+                <div class="logo">🎓 Pakistan International School</div>
+                <div class="tag">Excellence in Education</div>
+            </div>
+            <nav>
+                <a href="#home">Home</a>
+                <a href="#about">About Us</a>
+                <a href="#portals">Portals</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </header>
+
+        <!-- Quick Navigation Boxes -->
+        <div class="nav-boxes-section">
+            <div class="nav-box home" onclick="document.getElementById('home').scrollIntoView({behavior:'smooth'});">
+                <span class="nav-box-icon">🏠</span>
+                <div class="nav-box-text">HOME</div>
+            </div>
+            <div class="nav-box about" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'});">
+                <span class="nav-box-icon">ℹ️</span>
+                <div class="nav-box-text">ABOUT US</div>
+            </div>
+            <div class="nav-box portals" onclick="document.getElementById('portals').scrollIntoView({behavior:'smooth'});">
+                <span class="nav-box-icon">🔐</span>
+                <div class="nav-box-text">PORTALS</div>
+            </div>
+            <div class="nav-box contact" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});">
+                <span class="nav-box-icon">📞</span>
+                <div class="nav-box-text">CONTACT</div>
+            </div>
+        </div>
+
+        <!-- Hero Section -->
+        <section class="hero-section" id="home">
+            <div class="hero-left">
+                <div class="eyebrow">Welcome to Our School</div>
+                <h1>Building Tomorrow's Leaders Today</h1>
+                <p class="subtitle">
+                    A premier educational institution dedicated to academic excellence, character development, and holistic growth of every student.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#portals" class="btn">Explore Portals</a>
+                    <a href="#about" class="btn alt">Learn More</a>
+                </div>
+            </div>
+            
+            <div class="hero-right">
+                <div class="model-card">
+                    <div class="rotating-circle clockwise">
+                        <div class="circle-line line1"></div>
+                        <div class="circle-line line2"></div>
+                        <div class="circle-line line3"></div>
+                        <div class="circle-line line4"></div>
+                        <div class="circle-line line5"></div>
+                    </div>
+                    <div class="model-surface" style="display: flex; align-items: center; justify-content: center; font-size: 3.5rem;">📚📖🎓</div>
+                    <div class="model-content">
+                        <div class="model-title">📚 Academic Excellence</div>
+                        <div class="model-details">
+                            <span>🏆 CBSE Affiliated</span>
+                            <span>👨‍🏫 Expert Faculty</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="model-card">
+                    <div class="rotating-circle counterclockwise">
+                        <div class="circle-line line1"></div>
+                        <div class="circle-line line2"></div>
+                        <div class="circle-line line3"></div>
+                        <div class="circle-line line4"></div>
+                        <div class="circle-line line5"></div>
+                    </div>
+                    <div class="model-surface" style="display: flex; align-items: center; justify-content: center; font-size: 3.5rem;">🌍✈️🗺️</div>
+                    <div class="model-content">
+                        <div class="model-title">🌍 Global Perspective</div>
+                        <div class="model-details">
+                            <span>🎯 International Standards</span>
+                            <span>🗣️ Language Programs</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="model-card">
+                    <div class="rotating-circle clockwise">
+                        <div class="circle-line line1"></div>
+                        <div class="circle-line line2"></div>
+                        <div class="circle-line line3"></div>
+                        <div class="circle-line line4"></div>
+                        <div class="circle-line line5"></div>
+                    </div>
+                    <div class="model-surface" style="display: flex; align-items: center; justify-content: center; font-size: 3.5rem;">⚽🎨🏆</div>
+                    <div class="model-content">
+                        <div class="model-title">⚽ Sports & Activities</div>
+                        <div class="model-details">
+                            <span>🏅 State Championships</span>
+                            <span>🎨 Creative Programs</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Photo Slider - International School Sports & Campus -->
+        <div id="photo-slider" class="photo-slider">
+            <img src="https://images.unsplash.com/photo-1559027615-cd1628902d4a?w=800&h=400&fit=crop" alt="Modern School Campus">
+            <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=800&h=400&fit=crop" alt="International Sports Arena" class="hidden">
+            <img src="https://images.unsplash.com/photo-1610890556728-0bae5e05b190?w=800&h=400&fit=crop" alt="School Auditorium" class="hidden">
+            <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&h=400&fit=crop" alt="Athletic Track" class="hidden">
+            <img src="https://images.unsplash.com/photo-1497633762026-fab9146b6e8d?w=800&h=400&fit=crop" alt="School Garden" class="hidden">
+            <img src="https://images.unsplash.com/photo-1503387762519-52582b6256db?w=800&h=400&fit=crop" alt="Indoor Sports Facility" class="hidden">
+        </div>
+
+        <!-- About Section -->
+        <section id="about" class="portals" style="margin-top: 40px;">
+            <div class="section-head">
+                <h2>About Our Institution</h2>
+                <p>Committed to fostering excellence since 2010</p>
+            </div>
+            <div style="background: #fff; padding: 20px; border-radius: 12px; border: 1px solid #d9def8;">
+                <p style="margin-bottom: 12px; color: #2a2f53;">
+                    Pakistan International School is a premier educational institution dedicated to providing quality education and character development. Our vision is to create globally competent citizens who are ethically sound and socially responsible.
+                </p>
+                <p style="margin-bottom: 12px; color: #2a2f53;">
+                    <strong>Our Strengths:</strong>
+                </p>
+                <ul style="margin-left: 20px; color: #2a2f53;">
+                    <li>Modern Infrastructure & Technology</li>
+                    <li>Highly Qualified & Dedicated Faculty</li>
+                    <li>Comprehensive Curriculum Following CBSE Guidelines</li>
+                    <li>Sports, Arts, and Cultural Programs</li>
+                    <li>Counseling and Mentorship Services</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ADMIN SECTION -->
+        <section id="admin" class="portals" style="margin-top: 50px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; border-radius: 16px; color: white;">
+            <!-- 10 Wave animations with different colors -->
+            <svg class="wave-line wave1" style="top: 10%; left: 0; width: 100%; height: 4px;" viewBox="0 0 100 4">
+                <line x1="0" y1="2" x2="100" y2="2" stroke="#ffff00" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <svg class="wave-line wave2" style="top: 20%; left: 0; width: 4px; height: 100%;" viewBox="0 0 4 100">
+                <line x1="2" y1="0" x2="2" y2="100" stroke="#00ff00" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <svg class="wave-line wave3" style="top: 30%; left: 0; width: 100%; height: 4px;" viewBox="0 0 100 4">
+                <line x1="0" y1="2" x2="100" y2="2" stroke="#ff00ff" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <svg class="wave-line wave4" style="top: 40%; left: 0; width: 4px; height: 100%;" viewBox="0 0 4 100">
+                <line x1="2" y1="0" x2="2" y2="100" stroke="#00ffff" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <svg class="wave-line wave5" style="top: 50%; left: 0; width: 100%; height: 4px;" viewBox="0 0 100 4">
+                <line x1="0" y1="2" x2="100" y2="2" stroke="#ff0080" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <svg class="wave-line wave6" style="top: 60%; left: 0; width: 4px; height: 100%;" viewBox="0 0 4 100">
+                <line x1="2" y1="0" x2="2" y2="100" stroke="#80ff00" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <svg class="wave-line wave7" style="top: 70%; left: 0; width: 100%; height: 4px;" viewBox="0 0 100 4">
+                <line x1="0" y1="2" x2="100" y2="2" stroke="#0080ff" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <svg class="wave-line wave8" style="top: 80%; left: 0; width: 4px; height: 100%;" viewBox="0 0 4 100">
+                <line x1="2" y1="0" x2="2" y2="100" stroke="#ff8000" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <svg class="wave-line wave9" style="bottom: 10%; left: 0; width: 100%; height: 4px;" viewBox="0 0 100 4">
+                <line x1="0" y1="2" x2="100" y2="2" stroke="#ffff00" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <svg class="wave-line wave10" style="bottom: 5%; left: 0; width: 4px; height: 100%;" viewBox="0 0 4 100">
+                <line x1="2" y1="0" x2="2" y2="100" stroke="#00ff00" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            
+            <div class="section-head" style="color: white; position: relative; z-index: 2;">
+                <h2 style="color: white; font-size: 1.4rem;">👨‍💼 ADMIN PORTAL</h2>
+                <p style="color: rgba(255,255,255,0.9); font-size: 0.85rem;">School Management & Administration</p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-top: 15px; position: relative; z-index: 2;">
+                <div style="background: rgba(255,255,255,0.1); padding: 12px; border-radius: 10px; border: 2px solid rgba(255,255,255,0.3); text-align: center;">
+                    <div style="font-size: 1.8rem; margin-bottom: 6px;">📊</div>
+                    <h4 style="color: white; margin-bottom: 4px; font-size: 0.85rem;">Dashboard</h4>
+                    <p style="color: rgba(255,255,255,0.8); font-size: 0.75rem;">View statistics</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.1); padding: 12px; border-radius: 10px; border: 2px solid rgba(255,255,255,0.3); text-align: center;">
+                    <div style="font-size: 1.8rem; margin-bottom: 6px;">👥</div>
+                    <h4 style="color: white; margin-bottom: 4px; font-size: 0.85rem;">User Management</h4>
+                    <p style="color: rgba(255,255,255,0.8); font-size: 0.75rem;">Manage staff</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.1); padding: 12px; border-radius: 10px; border: 2px solid rgba(255,255,255,0.3); text-align: center;">
+                    <div style="font-size: 1.8rem; margin-bottom: 6px;">📋</div>
+                    <h4 style="color: white; margin-bottom: 4px; font-size: 0.85rem;">Reports</h4>
+                    <p style="color: rgba(255,255,255,0.8); font-size: 0.75rem;">Generate reports</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 15px; position: relative; z-index: 2;">
+                <a href="admin.html" style="background: white; color: #667eea; padding: 8px 20px; border-radius: 20px; text-decoration: none; font-weight: bold; display: inline-block; font-size: 0.85rem;">Login Admin →</a>
+            </div>
+        </section>
+
+        <!-- TEACHER SECTION -->
+        <section id="teacher" class="portals" style="margin-top: 50px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); padding: 30px; border-radius: 16px; color: white;">
+            <!-- 10 Wave animations with different colors -->
+            <svg class="wave-line wave1" style="top: 10%; left: 0; width: 100%; height: 4px;" viewBox="0 0 100 4">
+                <line x1="0" y1="2" x2="100" y2="2" stroke="#00ffff" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <svg class="wave-line wave2" style="top: 20%; left: 0; width: 4px; height: 100%;" viewBox="0 0 4 100">
+                <line x1="2" y1="0" x2="2" y2="100" stroke="#ffff00" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <svg class="wave-line wave3" style="top: 30%; left: 0; width: 100%; height: 4px;" viewBox="0 0 100 4">
+                <line x1="0" y1="2" x2="100" y2="2" stroke="#00ff00" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <svg class="wave-line wave4" style="top: 40%; left: 0; width: 4px; height: 100%;" viewBox="0 0 4 100">
+                <line x1="2" y1="0" x2="2" y2="100" stroke="#ff00ff" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <svg class="wave-line wave5" style="top: 50%; left: 0; width: 100%; height: 4px;" viewBox="0 0 100 4">
+                <line x1="0" y1="2" x2="100" y2="2" stroke="#ff0080" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <svg class="wave-line wave6" style="top: 60%; left: 0; width: 4px; height: 100%;" viewBox="0 0 4 100">
+                <line x1="2" y1="0" x2="2" y2="100" stroke="#80ff00" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <svg class="wave-line wave7" style="top: 70%; left: 0; width: 100%; height: 4px;" viewBox="0 0 100 4">
+                <line x1="0" y1="2" x2="100" y2="2" stroke="#0080ff" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <svg class="wave-line wave8" style="top: 80%; left: 0; width: 4px; height: 100%;" viewBox="0 0 4 100">
+                <line x1="2" y1="0" x2="2" y2="100" stroke="#ff8000" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <svg class="wave-line wave9" style="bottom: 10%; left: 0; width: 100%; height: 4px;" viewBox="0 0 100 4">
+                <line x1="0" y1="2" x2="100" y2="2" stroke="#00ffff" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <svg class="wave-line wave10" style="bottom: 5%; left: 0; width: 4px; height: 100%;" viewBox="0 0 4 100">
+                <line x1="2" y1="0" x2="2" y2="100" stroke="#ffff00" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            
+            <div class="section-head" style="color: white; position: relative; z-index: 2;">
+                <h2 style="color: white; font-size: 1.4rem;">👨‍🏫 TEACHER PORTAL</h2>
+                <p style="color: rgba(255,255,255,0.9); font-size: 0.85rem;">Classroom Management & Student Tracking</p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-top: 15px; position: relative; z-index: 2;">
+                <div style="background: rgba(255,255,255,0.1); padding: 12px; border-radius: 10px; border: 2px solid rgba(255,255,255,0.3); text-align: center;">
+                    <div style="font-size: 1.8rem; margin-bottom: 6px;">📚</div>
+                    <h4 style="color: white; margin-bottom: 4px; font-size: 0.85rem;">Classes</h4>
+                    <p style="color: rgba(255,255,255,0.8); font-size: 0.75rem;">Manage classes</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.1); padding: 12px; border-radius: 10px; border: 2px solid rgba(255,255,255,0.3); text-align: center;">
+                    <div style="font-size: 1.8rem; margin-bottom: 6px;">📝</div>
+                    <h4 style="color: white; margin-bottom: 4px; font-size: 0.85rem;">Assignments</h4>
+                    <p style="color: rgba(255,255,255,0.8); font-size: 0.75rem;">Create tasks</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.1); padding: 12px; border-radius: 10px; border: 2px solid rgba(255,255,255,0.3); text-align: center;">
+                    <div style="font-size: 1.8rem; margin-bottom: 6px;">⭐</div>
+                    <h4 style="color: white; margin-bottom: 4px; font-size: 0.85rem;">Grades</h4>
+                    <p style="color: rgba(255,255,255,0.8); font-size: 0.75rem;">Track grades</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 15px; position: relative; z-index: 2;">
+                <a href="teacher.html" style="background: white; color: #f5576c; padding: 8px 20px; border-radius: 20px; text-decoration: none; font-weight: bold; display: inline-block; font-size: 0.85rem;">Login Teacher →</a>
+            </div>
+        </section>
+
+        <!-- STUDENT SECTION -->
+        <section id="student" class="portals" style="margin-top: 50px; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); padding: 30px; border-radius: 16px; color: white;">
+            <!-- 10 Wave animations with different colors -->
+            <svg class="wave-line wave1" style="top: 10%; left: 0; width: 100%; height: 4px;" viewBox="0 0 100 4">
+                <line x1="0" y1="2" x2="100" y2="2" stroke="#ff00ff" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <svg class="wave-line wave2" style="top: 20%; left: 0; width: 4px; height: 100%;" viewBox="0 0 4 100">
+                <line x1="2" y1="0" x2="2" y2="100" stroke="#ffff00" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <svg class="wave-line wave3" style="top: 30%; left: 0; width: 100%; height: 4px;" viewBox="0 0 100 4">
+                <line x1="0" y1="2" x2="100" y2="2" stroke="#00ff00" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <svg class="wave-line wave4" style="top: 40%; left: 0; width: 4px; height: 100%;" viewBox="0 0 4 100">
+                <line x1="2" y1="0" x2="2" y2="100" stroke="#00ffff" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <svg class="wave-line wave5" style="top: 50%; left: 0; width: 100%; height: 4px;" viewBox="0 0 100 4">
+                <line x1="0" y1="2" x2="100" y2="2" stroke="#ff0080" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <svg class="wave-line wave6" style="top: 60%; left: 0; width: 4px; height: 100%;" viewBox="0 0 4 100">
+                <line x1="2" y1="0" x2="2" y2="100" stroke="#80ff00" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <svg class="wave-line wave7" style="top: 70%; left: 0; width: 100%; height: 4px;" viewBox="0 0 100 4">
+                <line x1="0" y1="2" x2="100" y2="2" stroke="#0080ff" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <svg class="wave-line wave8" style="top: 80%; left: 0; width: 4px; height: 100%;" viewBox="0 0 4 100">
+                <line x1="2" y1="0" x2="2" y2="100" stroke="#ff8000" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <svg class="wave-line wave9" style="bottom: 10%; left: 0; width: 100%; height: 4px;" viewBox="0 0 100 4">
+                <line x1="0" y1="2" x2="100" y2="2" stroke="#ff00ff" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <svg class="wave-line wave10" style="bottom: 5%; left: 0; width: 4px; height: 100%;" viewBox="0 0 4 100">
+                <line x1="2" y1="0" x2="2" y2="100" stroke="#00ff00" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            
+            <div class="section-head" style="color: white; position: relative; z-index: 2;">
+                <h2 style="color: white; font-size: 1.4rem;">👨‍🎓 STUDENT PORTAL</h2>
+                <p style="color: rgba(255,255,255,0.9); font-size: 0.85rem;">Your Academic Hub & Learning Platform</p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-top: 15px; position: relative; z-index: 2;">
+                <div style="background: rgba(255,255,255,0.1); padding: 12px; border-radius: 10px; border: 2px solid rgba(255,255,255,0.3); text-align: center;">
+                    <div style="font-size: 1.8rem; margin-bottom: 6px;">📊</div>
+                    <h4 style="color: white; margin-bottom: 4px; font-size: 0.85rem;">My Grades</h4>
+                    <p style="color: rgba(255,255,255,0.8); font-size: 0.75rem;">View grades</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.1); padding: 12px; border-radius: 10px; border: 2px solid rgba(255,255,255,0.3); text-align: center;">
+                    <div style="font-size: 1.8rem; margin-bottom: 6px;">✅</div>
+                    <h4 style="color: white; margin-bottom: 4px; font-size: 0.85rem;">Assignments</h4>
+                    <p style="color: rgba(255,255,255,0.8); font-size: 0.75rem;">Submit work</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.1); padding: 12px; border-radius: 10px; border: 2px solid rgba(255,255,255,0.3); text-align: center;">
+                    <div style="font-size: 1.8rem; margin-bottom: 6px;">📢</div>
+                    <h4 style="color: white; margin-bottom: 4px; font-size: 0.85rem;">Announcements</h4>
+                    <p style="color: rgba(255,255,255,0.8); font-size: 0.75rem;">Get updates</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 15px; position: relative; z-index: 2;">
+                <a href="student.html" style="background: white; color: #00f2fe; padding: 8px 20px; border-radius: 20px; text-decoration: none; font-weight: bold; display: inline-block; font-size: 0.85rem;">Login Student →</a>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="portals" style="margin-bottom: 20px;">
+            <div class="section-head">
+                <h2>Get In Touch</h2>
+                <p>We'd love to hear from you</p>
+            </div>
+            <div style="background: #fff; padding: 20px; border-radius: 12px; border: 1px solid #d9def8; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div>
+                    <h4 style="color: #1d2e68; margin-bottom: 10px;">📍 Location</h4>
+                    <p style="color: #2a2f53;">Pakistan International School<br>Karachi, Pakistan</p>
+                </div>
+                <div>
+                    <h4 style="color: #1d2e68; margin-bottom: 10px;">📞 Contact</h4>
+                    <p style="color: #2a2f53;">Phone: +92-21-XXXX XXXX<br>Email: info@pis.edu.pk</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <p>&copy; 2026 Pakistan International School. All rights reserved. | Designed for Educational Excellence</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+cd c:\Users\rajab\.gnutls
+python -m http.server 8000

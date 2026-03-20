@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🤖 AI Study Assistant - Pakistan International School</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+    }
+
+    .ai-container {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      min-height: 100vh;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .logo-section {
+      text-align: center;
+      padding-bottom: 30px;
+      border-bottom: 2px solid rgba(102, 126, 234, 0.3);
+      margin-bottom: 20px;
+    }
+
+    .logo-icon {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .logo-text {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #667eea;
+    }
+
+    .sidebar-menu {
+      list-style: none;
+    }
+
+    .sidebar-menu li {
+      margin-bottom: 8px;
+    }
+
+    .sidebar-menu a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 15px;
+      color: #c0c0c0;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .sidebar-menu a:hover {
+      background: rgba(102, 126, 234, 0.3);
+      color: #fff;
+      padding-left: 20px;
+    }
+
+    .sidebar-menu a.active {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+    }
+
+    .back-to-portal {
+      margin-top: auto;
+      padding-top: 20px;
+      border-top: 2px solid rgba(102, 126, 234, 0.3);
+    }
+
+    /* MAIN CONTENT */
+    .main-content {
+      padding: 30px;
+      overflow-y: auto;
+    }
+
+    .ai-header {
+      background: white;
+      border-radius: 15px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .ai-header-title {
+      font-size: 1.8rem;
+      color: #111;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .ai-header-desc {
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    /* CHAT INTERFACE */
+    .chat-container {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      height: 600px;
+      overflow: hidden;
+    }
+
+    .chat-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 20px;
+      border-radius: 15px 15px 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .chat-topic-selector {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .topic-btn {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 8px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.3s ease;
+    }
+
+    .topic-btn:hover,
+    .topic-btn.active {
+      background: rgba(255, 255, 255, 0.4);
+      border-color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* MESSAGES */
+    .messages-container {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      background: #f8f9fa;
+    }
+
+    .message {
+      margin-bottom: 15px;
+      display: flex;
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .message.student {
+      justify-content: flex-end;
+    }
+
+    .message-content {
+      max-width: 70%;
+      padding: 12px 15px;
+      border-radius: 12px;
+      word-wrap: break-word;
+      line-height: 1.5;
+    }
+
+    .message.student .message-content {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 15px 15px 0 15px;
+    }
+
+    .message.ai .message-content {
+      background: white;
+      color: #111;
+      border: 1px solid #e0e0e0;
+      border-radius: 15px 15px 15px 0;
+    }
+
+    .message.ai .message-icon {
+      margin-right: 10px;
+      font-size: 1.2rem;
+    }
+
+    .message.ai {
+      align-items: flex-start;
+    }
+
+    /* INPUT */
+    .input-container {
+      padding: 20px;
+      border-top: 1px solid #e0e0e0;
+      background: white;
+      display: flex;
+      gap: 10px;
+      align-items: flex-end;
+    }
+
+    .input-field {
+      flex: 1;
+      padding: 12px 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: 25px;
+      font-size: 0.95rem;
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+      resize: none;
+      max-height: 100px;
+      transition: all 0.3s ease;
+    }
+
+    .input-field:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 15px rgba(102, 126, 234, 0.2);
+    }
+
+    .send-btn {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+    }
+
+    .send-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    .send-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* STATS */
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 25px;
+    }
+
+    .stat-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+      text-align: center;
+    }
+
+    .stat-icon {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .stat-number {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #667eea;
+      margin-bottom: 5px;
+    }
+
+    .stat-label {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    /* LOADING */
+    .typing-indicator {
+      display: flex;
+      gap: 4px;
+      padding: 12px 15px;
+    }
+
+    .typing-dot {
+      width: 8px;
+      height: 8px;
+      background: #999;
+      border-radius: 50%;
+      animation: typing 1.4s infinite;
+    }
+
+    .typing-dot:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .typing-dot:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes typing {
+      0%, 60%, 100% {
+        transform: translateY(0);
+      }
+      30% {
+        transform: translateY(-10px);
+      }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .ai-container {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        display: none;
+      }
+
+      .chat-container {
+        height: 500px;
+      }
+
+      .message-content {
+        max-width: 85%;
+      }
+
+      .main-content {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="ai-container">
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <div class="logo-section">
+        <div class="logo-icon">🤖</div>
+        <div class="logo-text">AI Study Assistant</div>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li><a href="#subjects" onclick="filterBySubject('all')" class="active">📚 All Subjects</a></li>
+        <li><a href="#math" onclick="filterBySubject('Mathematics')">🔢 Mathematics</a></li>
+        <li><a href="#english" onclick="filterBySubject('English')">📖 English</a></li>
+        <li><a href="#science" onclick="filterBySubject('Science')">🔬 Science</a></li>
+        <li><a href="#social" onclick="filterBySubject('Social Studies')">🌍 Social Studies</a></li>
+        <li><a href="#urdu" onclick="filterBySubject('Urdu')">اردو Urdu</a></li>
+      </ul>
+
+      <div class="back-to-portal">
+        <a href="javascript:history.back()" style="padding: 12px 15px;">← &nbsp; Back to Portal</a>
+      </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+      <div class="ai-header">
+        <div class="ai-header-title">
+          🤖 AI Study Assistant
+        </div>
+        <div class="ai-header-desc">
+          Ask any question about your subjects and get instant help from our AI Study Assistant. Available for all subjects and topics.
+        </div>
+      </div>
+
+      <!-- TOPIC SELECTOR -->
+      <div class="chat-topic-selector">
+        <button class="topic-btn active" onclick="selectTopic('all')">All Topics</button>
+        <button class="topic-btn" onclick="selectTopic('homework')">📝 Homework Help</button>
+        <button class="topic-btn" onclick="selectTopic('exam')">📊 Exam Prep</button>
+        <button class="topic-btn" onclick="selectTopic('concepts')">💡 Concepts</button>
+      </div>
+
+      <!-- CHAT INTERFACE -->
+      <div class="chat-container">
+        <div class="chat-header">
+          <span>💬 Study Chat</span>
+          <span id="current-subject" style="font-size: 0.9rem; opacity: 0.9;">📚 All Subjects</span>
+        </div>
+
+        <div class="messages-container" id="messagesContainer">
+          <div class="message ai">
+            <div class="message-icon">🤖</div>
+            <div class="message-content">
+              السلام علیکم! Hello! 👋 I'm your AI Study Assistant. Ask me anything about your studies - Mathematics, English, Science, Social Studies, Urdu, or any other subject. I'm here to help you learn! 📚
+            </div>
+          </div>
+        </div>
+
+        <div class="input-container">
+          <input 
+            type="text" 
+            class="input-field" 
+            id="questionInput" 
+            placeholder="Ask your question here... یہاں اپنا سوال پوچھیں" 
+            onkeypress="handleKeyPress(event)"
+          >
+          <button class="send-btn" onclick="sendQuestion()">📤</button>
+        </div>
+      </div>
+
+      <!-- STATISTICS -->
+      <div class="stats-container">
+        <div class="stat-card">
+          <div class="stat-icon">📝</div>
+          <div class="stat-number" id="totalQuestions">0</div>
+          <div class="stat-label">Questions Asked</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">⏱️</div>
+          <div class="stat-number" id="avgTime">--</div>
+          <div class="stat-label">Avg Response Time</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">⭐</div>
+          <div class="stat-number" id="helpfulCount">0</div>
+          <div class="stat-label">Helpful Answers</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">🎓</div>
+          <div class="stat-number" id="topicsLearned">0</div>
+          <div class="stat-label">Topics Learned</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // AI Study Assistant Database
+    const aiKnowledgeBase = {
+      'Mathematics': [
+        { question: 'how to solve quadratic equations', answer: '📐 Quadratic equations can be solved using:\n\n1. Factoring Method\n2. Completing the Square\n3. Quadratic Formula: x = (-b ± √(b²-4ac)) / 2a\n\nExample: For x² + 5x + 6 = 0\nFactors: (x+2)(x+3) = 0\nSolutions: x = -2 or x = -3\n\n✅ Practice with different coefficients!' },
+        { question: 'what is algebra', answer: '🔢 Algebra is a branch of mathematics that uses symbols and letters to represent numbers and quantities.\n\nKey concepts:\n• Variables (x, y, z)\n• Equations\n• Functions\n• Polynomials\n\nAlgebra helps solve real-world problems by creating mathematical models. Start with basic equations and progress to complex functions! 💪' },
+        { question: 'how to calculate area', answer: '📏 Area calculations depend on the shape:\n\n• Rectangle: Length × Width\n• Triangle: (Base × Height) / 2\n• Circle: πr² (radius squared)\n• Square: Side × Side\n\nExample: Rectangle with length 5m and width 3m\nArea = 5 × 3 = 15 m²\n\n💡 Always remember the units (m², cm², etc.)!' },
+      ],
+      'English': [
+        { question: 'how to write essays', answer: '📝 Essay writing structure:\n\n1. **Introduction**\n   - Hook/attention grabber\n   - Thesis statement\n   - Overview of main points\n\n2. **Body Paragraphs**\n   - Topic sentence\n   - Supporting evidence\n   - Examples\n\n3. **Conclusion**\n   - Restate thesis\n   - Summary of key points\n   - Final thoughts\n\n💡 Tip: Write an outline before starting!' },
+        { question: 'what are parts of speech', answer: '🔤 Parts of speech are:\n\n1. **Noun** - person, place, thing (dog, house)\n2. **Verb** - action word (run, eat, write)\n3. **Adjective** - describes noun (big, blue, happy)\n4. **Adverb** - describes verb/adjective (quickly, very)\n5. **Pronoun** - replaces noun (he, she, it)\n6. **Preposition** - shows relationship (in, on, at)\n7. **Conjunction** - connects words (and, but, or)\n8. **Interjection** - expresses emotion (oh, wow)\n\n✅ Identify these in your daily reading!' },
+        { question: 'how to improve vocabulary', answer: '📚 Improve vocabulary by:\n\n1. **Read regularly** - books, articles, news\n2. **Use flashcards** - new words daily\n3. **Read in context** - understand word usage\n4. **Practice writing** - use new words in sentences\n5. **Watch movies** - with subtitles\n6. **Keep a word journal** - track new words\n7. **Use apps** - Duolingo, Quizlet\n\n💡 Challenge: Learn 3 new words daily!' },
+      ],
+      'Science': [
+        { question: 'what is photosynthesis', answer: '🌱 Photosynthesis is the process plants use to convert sunlight into energy.\n\n**Equation:**\n6CO₂ + 6H₂O + Light → C₆H₁₂O₆ + 6O₂\n\n**Steps:**\n1. Light reaction - occurs in thylakoids\n2. Dark reaction (Calvin cycle) - occurs in stroma\n\n**Key facts:**\n• Requires chlorophyll (green pigment)\n• Produces glucose (food) and oxygen\n• Happens in leaves\n\n✅ Understand how plants feed themselves!' },
+        { question: 'what is the water cycle', answer: '💧 The water cycle has 4 main stages:\n\n1. **Evaporation** - water turns into vapor (sun heats water)\n2. **Condensation** - vapor becomes water droplets (cools down)\n3. **Precipitation** - water falls as rain/snow\n4. **Collection** - water collects in oceans/rivers\n\n**Where it happens:**\n• Oceans, lakes, rivers (70% of Earth)\n• Atmosphere\n• Land and organisms\n\n💡 The same water has been recycled for billions of years!' },
+        { question: 'how does the human body work', answer: '🫀 The human body has 11 major systems:\n\n1. **Nervous** - brain, spinal cord, nerves\n2. **Circulatory** - heart, blood vessels\n3. **Respiratory** - lungs, airways\n4. **Digestive** - stomach, intestines\n5. **Skeletal** - bones, cartilage\n6. **Muscular** - muscles for movement\n7. **Integumentary** - skin, hair\n8. **Endocrine** - hormones, glands\n9. **Excretory** - removes waste\n10. **Reproductive** - produces offspring\n11. **Immune** - fights infections\n\n✅ Each system works together to keep you alive!' },
+      ],
+      'Social Studies': [
+        { question: 'what is geography', answer: '🌍 Geography is the study of:\n\n**Physical Geography:**\n• Mountains, rivers, climate\n• Weather patterns\n• Natural resources\n\n**Human Geography:**\n• Populations and cultures\n• Countries and cities\n• Economics and politics\n\n**Key branches:**\n• Physical geography\n• Human geography\n• Environmental geography\n• Urban geography\n\n💡 Geography connects people, places, and nature!' },
+        { question: 'what is history', answer: '📜 History is the study of past events and civilizations.\n\n**Time periods:**\n• Prehistoric era\n• Ancient civilizations (Egypt, Rome, China)\n• Medieval period\n• Renaissance\n• Modern era\n\n**Why study history?**\n• Understand current events\n• Learn from past mistakes\n• Appreciate different cultures\n• See human progress\n\n✅ History helps us understand our world today!' },
+        { question: 'what are continents', answer: '🗺️ Earth has 7 continents:\n\n1. **Asia** - largest, most populated\n2. **Africa** - diverse wildlife and cultures\n3. **Europe** - historical significance\n4. **North America** - USA, Canada, Mexico\n5. **South America** - Amazon rainforest\n6. **Australia/Oceania** - unique animals\n7. **Antarctica** - ice covered, polar region\n\n**Additional info:**\n• Total area: 149.6M km²\n• Connected by oceans\n• Each has unique geography\n\n💡 Can you locate all 7 continents?' },
+      ],
+      'Urdu': [
+        { question: 'اردو الفاظ کیسے سیکھیں', answer: '📚 اردو الفاظ سیکھنے کے طریقے:\n\n1. **روزانہ پڑھنا** - اردو کتابیں، اخبار\n2. **فلاش کارڈز** - نئے لفظ روزانہ\n3. **لفظوں کو سنا** - اردو گانے، پوڈکاسٹ\n4. **لکھنا** - نئے لفظوں کو جملوں میں استعمال کریں\n5. **بات کریں** - اردو کے ساتھیوں سے\n6. **قاموس استعمال کریں** - مطلب حاصل کریں\n\n✅ روزانہ 5 نئے لفظ سیکھنے کی کوشش کریں!' },
+        { question: 'اردو گرامر سیکھیں', answer: '🔤 اردو گرامر کے اہم حصے:\n\n1. **اسم** - چیزوں کے نام (مکان، درخت)\n2. **فعل** - کام کے الفاظ (دوڑنا، کھانا)\n3. **صفت** - بیان کرنے والے الفاظ (بڑا، سرخ)\n4. **ضمیر** - وہ، یہ، میں\n5. **ماضی، حال، مستقبل** - وقت\n\n**مثال:**\nمیں (ضمیر) اردو (اسم) سیکھتا (فعل) ہوں۔\n\n✅ روزانہ ایک قاعدہ کو سمجھیں!' },
+      ]
+    };
+
+    let sessionStats = {
+      totalQuestions: 0,
+      questionsAsked: [],
+      responseTime: [],
+      helpfulCount: 0,
+      topicsLearned: new Set()
+    };
+
+    let currentSubject = 'all';
+    let isLoading = false;
+
+    // Send Question Function
+    function sendQuestion() {
+      const input = document.getElementById('questionInput');
+      const question = input.value.trim();
+
+      if (!question) return;
+
+      // Add user message
+      addMessage(question, 'student');
+      input.value = '';
+      
+      // Show loading indicator
+      isLoading = true;
+      showLoadingIndicator();
+
+      // Simulate AI thinking time
+      setTimeout(() => {
+        const response = getAIResponse(question);
+        addMessage(response, 'ai');
+        updateStats();
+        isLoading = false;
+      }, 1000 + Math.random() * 2000);
+    }
+
+    // Handle Enter key
+    function handleKeyPress(event) {
+      if (event.key === 'Enter' && !event.shiftKey) {
+        event.preventDefault();
+        sendQuestion();
+      }
+    }
+
+    // Add Message to Chat
+    function addMessage(text, sender) {
+      const container = document.getElementById('messagesContainer');
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `message ${sender}`;
+
+      const contentDiv = document.createElement('div');
+      contentDiv.className = 'message-content';
+      
+      if (sender === 'ai') {
+        const iconSpan = document.createElement('span');
+        iconSpan.className = 'message-icon';
+        iconSpan.textContent = '🤖';
+        messageDiv.appendChild(iconSpan);
+      }
+
+      contentDiv.textContent = text;
+      messageDiv.appendChild(contentDiv);
+      container.appendChild(messageDiv);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    // Show Loading
+    function showLoadingIndicator() {
+      const container = document.getElementById('messagesContainer');
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'message ai';
+      messageDiv.id = 'loadingMessage';
+
+      const iconSpan = document.createElement('span');
+      iconSpan.className = 'message-icon';
+      iconSpan.textContent = '🤖';
+
+      const typingDiv = document.createElement('div');
+      typingDiv.className = 'typing-indicator';
+      for (let i = 0; i < 3; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'typing-dot';
+        typingDiv.appendChild(dot);
+      }
+
+      messageDiv.appendChild(iconSpan);
+      messageDiv.appendChild(typingDiv);
+      container.appendChild(messageDiv);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    // Get AI Response
+    function getAIResponse(question) {
+      const loading = document.getElementById('loadingMessage');
+      if (loading) loading.remove();
+
+      const lowerQuestion = question.toLowerCase();
+      
+      // Search through knowledge base
+      for (const [subject, responses] of Object.entries(aiKnowledgeBase)) {
+        if (currentSubject !== 'all' && subject !== currentSubject) continue;
+
+        for (const item of responses) {
+          if (lowerQuestion.includes(item.question.split(' ').slice(0, 3).join(' '))) {
+            sessionStats.topicsLearned.add(subject);
+            return item.answer;
+          }
+        }
+      }
+
+      // Default responses
+      if (lowerQuestion.includes('help')) {
+        return '📚 میں آپ کی کیسے مدد کر سکتا ہوں؟\n\nآپ مجھ سے پوچھ سکتے ہیں:\n• ریاضی کے سوالات\n• انگریزی کی مشق\n• سائنس کے تصورات\n• سماجی علوم\n• اردو کی گرامر\n\nأو بس اپنا سوال pوچھو! 💡';
+      }
+
+      return '🤔 بہترین سوال! یہاں ایک تفصیلی جواب ہے:\n\nآپ کا سوال بہت اہم ہے۔ میں سفارش کرتا ہوں کہ:\n\n1. اپنے نوٹس کو دوبارہ دیکھیں\n2. متعلقہ مثالوں کو حل کریں\n3. اپنے ٹیچر سے مزید تفصیل پوچھیں\n4. مزید مشق کریں\n\n💪 مسلسل کوشش کریں اور آپ کامیاب ہوں گے!';
+    }
+
+    // Filter by Subject
+    function filterBySubject(subject) {
+      currentSubject = subject;
+      const subjectNames = {
+        'all': '📚 All Subjects',
+        'Mathematics': '🔢 Mathematics',
+        'English': '📖 English',
+        'Science': '🔬 Science',
+        'Social Studies': '🌍 Social Studies',
+        'Urdu': 'اردو Urdu'
+      };
+      document.getElementById('current-subject').textContent = subjectNames[subject];
+    }
+
+    // Select Topic
+    function selectTopic(topic) {
+      const buttons = document.querySelectorAll('.topic-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+
+    // Update Stats
+    function updateStats() {
+      sessionStats.totalQuestions++;
+      document.getElementById('totalQuestions').textContent = sessionStats.totalQuestions;
+      document.getElementById('topicsLearned').textContent = sessionStats.topicsLearned.size;
+      document.getElementById('helpfulCount').textContent = Math.floor(sessionStats.totalQuestions * 0.85);
+    }
+
+    // Welcome Message
+    window.addEventListener('load', () => {
+      document.getElementById('questionInput').focus();
+    });
+  </script>
+</body>
+</html>

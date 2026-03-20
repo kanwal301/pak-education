@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🧑‍🏫 Advanced Teacher LMS Portal - 47 Features</title>
+  <style>
+    :root {
+      --primary: #667eea;
+      --secondary: #764ba2;
+      --success: #10b981;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --dark: #1f2937;
+      --light: #f9fafb;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+      background: #0f3460;
+      min-height: 100vh;
+    }
+
+    .teacher-container {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      min-height: 100vh;
+      background: #0f3460;
+    }
+
+    /* SIDEBAR */
+    .teacher-sidebar {
+      background: linear-gradient(180deg, #0f3460 0%, #1a1a2e 100%);
+      color: white;
+      padding: 20px;
+      overflow-y: auto;
+      border-right: 2px solid rgba(102, 126, 234, 0.2);
+    }
+
+    .teacher-info {
+      text-align: center;
+      padding-bottom: 20px;
+      border-bottom: 2px solid rgba(79, 172, 254, 0.3);
+      margin-bottom: 20px;
+    }
+
+    .teacher-avatar {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin: 0 auto 10px;
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    .teacher-name {
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+
+    .teacher-subject {
+      font-size: 0.8rem;
+      color: #b0b0b0;
+    }
+
+    .menu-title {
+      font-size: 0.75rem;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .menu-item a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px;
+      color: #b0b0b0;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      font-weight: 500;
+      border-left: 3px solid transparent;
+      margin-bottom: 6px;
+    }
+
+    .menu-item a:hover {
+      background: rgba(102, 126, 234, 0.2);
+      color: white;
+      border-left-color: #667eea;
+      padding-left: 15px;
+    }
+
+    .menu-item a.active {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-left-color: #ffd700;
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    }
+
+    .menu-icon {
+      font-size: 1.2rem;
+      width: 20px;
+    }
+
+    /* MAIN CONTENT */
+    .teacher-content {
+      padding: 30px;
+      overflow-y: auto;
+      background: #0f3460;
+    }
+
+    .page-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 30px;
+      border-radius: 15px;
+      margin-bottom: 30px;
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+    }
+
+    .page-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .page-subtitle {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    /* STATS GRID */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      border: 2px solid rgba(102, 126, 234, 0.2);
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+      color: white;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-8px);
+      border-color: #667eea;
+      box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+    }
+
+    .stat-icon {
+      font-size: 2.5rem;
+      margin-bottom: 12px;
+    }
+
+    .stat-value {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #667eea;
+      margin-bottom: 5px;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: #b0b0b0;
+    }
+
+    /* TABS */
+    .tabs-container {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      border-radius: 15px;
+      border: 2px solid rgba(102, 126, 234, 0.2);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      margin-bottom: 30px;
+      overflow: hidden;
+    }
+
+    .tabs-header {
+      display: flex;
+      flex-wrap: wrap;
+      border-bottom: 2px solid rgba(102, 126, 234, 0.2);
+    }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      color: #b0b0b0;
+      padding: 15px 20px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      font-size: 0.95rem;
+    }
+
+    .tab-btn:hover {
+      color: white;
+      background: rgba(102, 126, 234, 0.1);
+    }
+
+    .tab-btn.active {
+      color: #667eea;
+      border-bottom-color: #667eea;
+    }
+
+    .tab-content {
+      display: none;
+      padding: 25px;
+      min-height: 400px;
+      color: white;
+    }
+
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* CARDS */
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid rgba(102, 126, 234, 0.3);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      background: rgba(102, 126, 234, 0.1);
+      border-color: #667eea;
+      transform: translateX(5px);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .card-badge {
+      background: rgba(102, 126, 234, 0.3);
+      color: #667eea;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    /* PROGRESS BAR */
+    .progress-container {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      padding: 8px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 8px;
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+      border-radius: 5px;
+      transition: width 0.3s ease;
+    }
+
+    /* FORMS */
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 700;
+      color: #b0b0b0;
+    }
+
+    .form-input,
+    .form-textarea,
+    .form-select {
+      width: 100%;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid rgba(102, 126, 234, 0.2);
+      border-radius: 8px;
+      color: white;
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+    }
+
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+      color: #666;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus,
+    .form-select:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 15px rgba(102, 126, 234, 0.2);
+      background: rgba(102, 126, 234, 0.05);
+    }
+
+    /* BUTTONS */
+    .btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.95rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-secondary {
+      background: rgba(102, 126, 234, 0.2);
+      color: #667eea;
+      border: 2px solid #667eea;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(102, 126, 234, 0.3);
+    }
+
+    .btn-small {
+      padding: 8px 16px;
+      font-size: 0.8rem;
+    }
+
+    /* TABLES */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    .data-table th {
+      background: rgba(102, 126, 234, 0.2);
+      padding: 12px;
+      text-align: left;
+      font-weight: 700;
+      border-bottom: 2px solid rgba(102, 126, 234, 0.3);
+      color: #b0b0b0;
+    }
+
+    .data-table td {
+      padding: 12px;
+      border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+      color: #b0b0b0;
+    }
+
+    .data-table tr:hover {
+      background: rgba(102, 126, 234, 0.1);
+    }
+
+    /* MODALS */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-content {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      border: 2px solid rgba(102, 126, 234, 0.3);
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 600px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-header {
+      font-size: 1.8rem;
+      color: white;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .close-modal {
+      background: none;
+      border: none;
+      color: #b0b0b0;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .close-modal:hover {
+      color: white;
+    }
+
+    /* GRID LAYOUTS */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+    }
+
+    /* BADGES & LABELS */
+    .badge-success {
+      background: rgba(16, 185, 129, 0.2);
+      color: #10b981;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .badge-warning {
+      background: rgba(245, 158, 11, 0.2);
+      color: #f59e0b;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .badge-danger {
+      background: rgba(239, 68, 68, 0.2);
+      color: #ef4444;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .teacher-container {
+        grid-template-columns: 1fr;
+      }
+
+      .teacher-sidebar {
+        display: none;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .page-title {
+        font-size: 1.5rem;
+      }
+
+      .tabs-header {
+        flex-wrap: wrap;
+      }
+
+      .tab-btn {
+        padding: 10px 12px;
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="teacher-container">
+    <!-- SIDEBAR -->
+    <div class="teacher-sidebar">
+      <div class="teacher-info">
+        <div class="teacher-avatar">👨‍🏫</div>
+        <div class="teacher-name">Prof. Muhammad Ali</div>
+        <div class="teacher-subject">Mathematics & Physics</div>
+      </div>
+
+      <div>
+        <div class="menu-title">📚 Teaching</div>
+        <ul style="list-style: none;">
+          <li class="menu-item"><a onclick="showTab('dashboard')" class="active"><span class="menu-icon">📊</span> Dashboard</a></li>
+          <li class="menu-item"><a onclick="showTab('courses')"><span class="menu-icon">📖</span> My Courses</a></li>
+          <li class="menu-item"><a onclick="showTab('modules')"><span class="menu-icon">📋</span> Modules & Lessons</a></li>
+          <li class="menu-item"><a onclick="showTab('content')"><span class="menu-icon">🎥</span> Content Upload</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="menu-title">✏️ Assessment</div>
+        <ul style="list-style: none;">
+          <li class="menu-item"><a onclick="showTab('assignments')"><span class="menu-icon">✏️</span> Assignments</a></li>
+          <li class="menu-item"><a onclick="showTab('quizzes')"><span class="menu-icon">❓</span> Quizzes/Exams</a></li>
+          <li class="menu-item"><a onclick="showTab('grading')"><span class="menu-icon">📝</span> Grading</a></li>
+          <li class="menu-item"><a onclick="showTab('questionbank')"><span class="menu-icon">🏦</span> Question Bank</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="menu-title">👥 Students</div>
+        <ul style="list-style: none;">
+          <li class="menu-item"><a onclick="showTab('enrollment')"><span class="menu-icon">📝</span> Enrollment</a></li>
+          <li class="menu-item"><a onclick="showTab('attendance')"><span class="menu-icon">✓</span> Attendance</a></li>
+          <li class="menu-item"><a onclick="showTab('progress')"><span class="menu-icon">📈</span> Progress</a></li>
+          <li class="menu-item"><a onclick="showTab('insights')"><span class="menu-icon">💡</span> Insights</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="menu-title">🎓 Advanced</div>
+        <ul style="list-style: none;">
+          <li class="menu-item"><a onclick="showTab('analytics')"><span class="menu-icon">📊</span> Analytics</a></li>
+          <li class="menu-item"><a onclick="showTab('ai')"><span class="menu-icon">🤖</span> AI Tools</a></li>
+          <li class="menu-item"><a onclick="showTab('certificates')"><span class="menu-icon">🏆</span> Certificates</a></li>
+          <li class="menu-item"><a onclick="showTab('reports')"><span class="menu-icon">📄</span> Reports</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="menu-title">💬 Communication</div>
+        <ul style="list-style: none;">
+          <li class="menu-item"><a onclick="showTab('announcements')"><span class="menu-icon">📢</span> Announcements</a></li>
+          <li class="menu-item"><a onclick="showTab('chat')"><span class="menu-icon">💬</span> Chat</a></li>
+          <li class="menu-item"><a onclick="showTab('forum')"><span class="menu-icon">💭</span> Forum</a></li>
+          <li class="menu-item"><a onclick="showTab('feedback')"><span class="menu-icon">⭐</span> Feedback</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="menu-title">⚙️ Settings</div>
+        <ul style="list-style: none;">
+          <li class="menu-item"><a onclick="showTab('profile')"><span class="menu-icon">👤</span> Profile</a></li>
+          <li class="menu-item"><a onclick="showTab('settings')"><span class="menu-icon">⚙️</span> Settings</a></li>
+          <li class="menu-item"><a onclick="showTab('support')"><span class="menu-icon">🆘</span> Support</a></li>
+        </ul>
+      </div>
+
+      <button class="btn btn-secondary" onclick="logout()" style="width: 100%; margin-top: 20px;">🚪 Logout</button>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="teacher-content">
+
+      <!-- DASHBOARD TAB -->
+      <div id="dashboard" class="tab-content active">
+        <div class="page-header">
+          <div class="page-title">📊 Teaching Dashboard</div>
+          <div class="page-subtitle">Welcome back! Monitor your teaching activities and student progress</div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">📖</div>
+            <div class="stat-value">12</div>
+            <div class="stat-label">Active Courses</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">👥</div>
+            <div class="stat-value">245</div>
+            <div class="stat-label">Total Students</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">📝</div>
+            <div class="stat-value">48</div>
+            <div class="stat-label">Pending Submissions</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">⭐</div>
+            <div class="stat-value">4.8</div>
+            <div class="stat-label">Course Rating</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">✓</div>
+            <div class="stat-value">92%</div>
+            <div class="stat-label">Avg Attendance</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">💰</div>
+            <div class="stat-value">Rs 45K</div>
+            <div class="stat-label">Monthly Earnings</div>
+          </div>
+        </div>
+
+        <div class="tabs-container">
+          <div class="tabs-header">
+            <button class="tab-btn active" onclick="switchTab(this, 'quick-overview')">🎯 Quick Overview</button>
+            <button class="tab-btn" onclick="switchTab(this, 'recent-activity')">📅 Recent Activity</button>
+            <button class="tab-btn" onclick="switchTab(this, 'upcoming')">📆 Upcoming</button>
+          </div>
+
+          <div id="quick-overview" class="tab-content active">
+            <h3 style="margin-bottom: 20px;">📊 Teaching Summary</h3>
+            <div class="grid-2">
+              <div class="card">
+                <div class="card-header">
+                  <div>
+                    <div class="card-title">📚 Mathematics 10-A</div>
+                    <p style="color: #999; font-size: 0.8rem; margin-top: 5px;">45 Students | 8 Modules</p>
+                  </div>
+                  <span class="badge-success">Active</span>
+                </div>
+                <div class="progress-container">
+                  <div class="progress-bar" style="width: 85%;"></div>
+                </div>
+                <p style="font-size: 0.85rem; color: #999;">85% completion | 3 pending assignments</p>
+              </div>
+
+              <div class="card">
+                <div class="card-header">
+                  <div>
+                    <div class="card-title">🧬 Biology AP</div>
+                    <p style="color: #999; font-size: 0.8rem; margin-top: 5px;">32 Students | 6 Modules</p>
+                  </div>
+                  <span class="badge-success">Active</span>
+                </div>
+                <div class="progress-container">
+                  <div class="progress-bar" style="width: 72%;"></div>
+                </div>
+                <p style="font-size: 0.85rem; color: #999;">72% completion | 2 pending assignments</p>
+              </div>
+            </div>
+          </div>
+
+          <div id="recent-activity" class="tab-content">
+            <h3 style="margin-bottom: 20px;">📅 Recent Activity</h3>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Activity</th>
+                  <th>Course</th>
+                  <th>Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Mar 19</td>
+                  <td>📝 Assignment Submitted</td>
+                  <td>Mathematics</td>
+                  <td>12 submissions received</td>
+                </tr>
+                <tr>
+                  <td>Mar 18</td>
+                  <td>📹 Video Uploaded</td>
+                  <td>Biology</td>
+                  <td>Cell Division - Lecture</td>
+                </tr>
+                <tr>
+                  <td>Mar 17</td>
+                  <td>✓ Attendance Marked</td>
+                  <td>All</td>
+                  <td>245 students marked</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="upcoming" class="tab-content">
+            <h3 style="margin-bottom: 20px;">📆 Upcoming Events</h3>
+            <div class="card">
+              <div class="card-title">📚 Unit Test - Mathematics</div>
+              <p style="color: #999; margin-top: 5px;">20 March 2026 | 2:00 PM</p>
+              <button class="btn btn-primary btn-small" style="margin-top: 10px;">Manage Test</button>
+            </div>
+            <div class="card">
+              <div class="card-title">🎥 Live Class - Biology</div>
+              <p style="color: #999; margin-top: 5px;">21 March 2026 | 10:00 AM</p>
+              <button class="btn btn-primary btn-small" style="margin-top: 10px;">Start Live Class</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COURSES TAB -->
+      <div id="courses" class="tab-content">
+        <div class="page-header">
+          <div class="page-title">📖 My Courses</div>
+          <div class="page-subtitle">Manage and organize your teaching courses</div>
+        </div>
+
+        <button class="btn btn-primary" onclick="openModal('courseModal')" style="margin-bottom: 20px;">➕ Create New Course</button>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">📐 Advanced Mathematics</div>
+              <span class="badge-success">Active</span>
+            </div>
+            <p style="color: #999; font-size: 0.85rem; margin: 8px 0;">Class 10 | 45 Students</p>
+            <div class="progress-container">
+              <div class="progress-bar" style="width: 80%;"></div>
+            </div>
+            <div style="display: flex; gap: 10px; margin-top: 12px;">
+              <button class="btn btn-primary btn-small" onclick="alert('📖 Course access panel')">Access</button>
+              <button class="btn btn-secondary btn-small" onclick="alert('⚙️ Course settings')">Settings</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">🧬 Biology Lab</div>
+              <span class="badge-success">Active</span>
+            </div>
+            <p style="color: #999; font-size: 0.85rem; margin: 8px 0;">Class 10 | 32 Students</p>
+            <div class="progress-container">
+              <div class="progress-bar" style="width: 65%;"></div>
+            </div>
+            <div style="display: flex; gap: 10px; margin-top: 12px;">
+              <button class="btn btn-primary btn-small" onclick="alert('📖 Course access panel')">Access</button>
+              <button class="btn btn-secondary btn-small" onclick="alert('⚙️ Course settings')">Settings</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODULES TAB -->
+      <div id="modules" class="tab-content">
+        <div class="page-header">
+          <div class="page-title">📋 Modules & Lessons</div>
+          <div class="page-subtitle">Structure and organize your course content</div>
+        </div>
+
+        <button class="btn btn-primary" onclick="openModal('moduleModal')" style="margin-bottom: 20px;">➕ New Module</button>
+
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Module 1: Algebra Fundamentals</div>
+              <p style="color: #999; font-size: 0.85rem; margin-top: 5px;">3 Lessons</p>
+            </div>
+            <span class="badge-success">Published</span>
+          </div>
+          <p style="color: #b0b0b0; margin: 12px 0;">3 lessons: Variables, Equations, Systems</p>
+          <button class="btn btn-primary btn-small" onclick="alert('Edit module content')">✏️ Edit</button>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Module 2: Quadratic Equations</div>
+              <p style="color: #999; font-size: 0.85rem; margin-top: 5px;">4 Lessons</p>
+            </div>
+            <span class="badge-warning">Draft</span>
+          </div>
+          <p style="color: #b0b0b0; margin: 12px 0;">4 lessons: Standard form, Solving, Applications, Practice</p>
+          <button class="btn btn-primary btn-small" onclick="alert('Edit module content')">✏️ Edit</button>
+        </div>
+      </div>
+
+      <!-- CONTENT UPLOAD TAB -->
+      <div id="content" class="tab-content">
+        <div class="page-header">
+          <div class="page-title">🎥 Content Upload Center</div>
+          <div class="page-subtitle">Upload videos, PDFs, and other course materials</div>
+        </div>
+
+        <button class="btn btn-primary" onclick="openModal('uploadModal')" style="margin-bottom: 20px;">📤 Upload Content</button>
+
+        <div class="tabs-container">
+          <div class="tabs-header">
+            <button class="tab-btn active" onclick="switchTab(this, 'videos')">🎥 Videos</button>
+            <button class="tab-btn" onclick="switchTab(this, 'documents')">📄 Documents</button>
+            <button class="tab-btn" onclick="switchTab(this, 'recordings')">📹 Recordings</button>
+          </div>
+
+          <div id="videos" class="tab-content active" style="padding: 25px;">
+            <h3 style="margin-bottom: 20px;">📚 Lecture Videos</h3>
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <div class="card-title">🎥 Introduction to Algebra</div>
+                  <p style="color: #999; font-size: 0.85rem; margin-top: 5px;">MP4 | 25 MB | 12:45 min</p>
+                </div>
+                <span class="badge-success">Published</span>
+              </div>
+              <div style="display: flex; gap: 10px; margin-top: 12px;">
+                <button class="btn btn-primary btn-small">▶️ Preview</button>
+                <button class="btn btn-secondary btn-small">📊 Analytics</button>
+              </div>
+            </div>
+          </div>
+
+          <div id="documents" class="tab-content" style="padding: 25px;">
+            <h3 style="margin-bottom: 20px;">📄 Study Materials</h3>
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <div class="card-title">📓 Algebra Notes Chapter 1</div>
+                  <p style="color: #999; font-size: 0.85rem; margin-top: 5px;">PDF | 2.4 MB</p>
+                </div>
+                <span class="badge-success">Published</span>
+              </div>
+            </div>
+          </div>
+
+          <div id="recordings" class="tab-content" style="padding: 25px;">
+            <h3 style="margin-bottom: 20px;">📹 Class Recordings</h3>
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <div class="card-title">🎬 Class Recording - 18 March</div>
+                  <p style="color: #999; font-size: 0.85rem; margin-top: 5px;">55:30 min | Zoom</p>
+                </div>
+                <span class="badge-success">Available</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ASSIGNMENTS TAB -->
+      <div id="assignments" class="tab-content">
+        <div class="page-header">
+          <div class="page-title">✏️ Assignment Management</div>
+          <div class="page-subtitle">Create, distribute, and manage assignments</div>
+        </div>
+
+        <button class="btn btn-primary" onclick="openModal('assignmentModal')" style="margin-bottom: 20px;">➕ Create Assignment</button>
+
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Course</th>
+              <th>Assigned</th>
+              <th>Due Date</th>
+              <th>Submissions</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>📝 Chapter 1 Problems</td>
+              <td>Mathematics</td>
+              <td>45</td>
+              <td>Mar 22</td>
+              <td><span class="badge-success">42/45</span></td>
+              <td><button class="btn btn-primary btn-small">View</button></td>
+            </tr>
+            <tr>
+              <td>🔬 Lab Experiment</td>
+              <td>Biology</td>
+              <td>32</td>
+              <td>Mar 25</td>
+              <td><span class="badge-warning">28/32</span></td>
+              <td><button class="btn btn-primary btn-small">View</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- QUIZZES TAB -->
+      <div id="quizzes" class="tab-content">
+        <div class="page-header">
+          <div class="page-title">❓ Quiz & Exam Management</div>
+          <div class="page-subtitle">Create MCQs, descriptive questions, and assessments</div>
+        </div>
+
+        <button class="btn btn-primary" onclick="openModal('quizModal')" style="margin-bottom: 20px;">➕ Create Quiz</button>
+
+        <h3 style="margin-bottom: 20px; color: white;">📊 Active Quizzes</h3>
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">📋 Unit Test 1 - Algebra</div>
+              <p style="color: #999; font-size: 0.85rem; margin-top: 5px;">20 MCQs + 2 Descriptive | 60 minutes</p>
+            </div>
+            <span class="badge-success">Active</span>
+          </div>
+          <p style="color: #b0b0b0; margin: 12px 0;">Taken by: 38/45 students | Avg Score: 78%</p>
+          <div style="display: flex; gap: 10px; margin-top: 12px;">
+            <button class="btn btn-primary btn-small">📊 Results</button>
+            <button class="btn btn-secondary btn-small">✏️ Edit</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- GRADING TAB -->
+      <div id="grading" class="tab-content">
+        <div class="page-header">
+          <div class="page-title">📝 Assignment & Quiz Grading</div>
+          <div class="page-subtitle">Review, grade, and provide feedback to students</div>
+        </div>
+
+        <div class="tabs-container">
+          <div class="tabs-header">
+            <button class="tab-btn active" onclick="switchTab(this, 'pending')">📋 Pending Review (12)</button>
+            <button class="tab-btn" onclick="switchTab(this, 'graded')">✅ Graded</button>
+            <button class="tab-btn" onclick="switchTab(this, 'gradebook')">📚 Gradebook</button>
+          </div>
+
+          <div id="pending" class="tab-content active" style="padding: 25px;">
+            <h3 style="margin-bottom: 20px;">📋 Pending Submissions</h3>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Student</th>
+                  <th>Assignment</th>
+                  <th>Submitted</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Ahmed Khan</td>
+                  <td>Chapter 1 Problems</td>
+                  <td>Mar 19, 2:30 PM</td>
+                  <td><button class="btn btn-primary btn-small" onclick="openModal('gradeModal')">Grade</button></td>
+                </tr>
+                <tr>
+                  <td>Fatima Ali</td>
+                  <td>Chapter 1 Problems</td>
+                  <td>Mar 19, 3:15 PM</td>
+                  <td><button class="btn btn-primary btn-small" onclick="openModal('gradeModal')">Grade</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="graded" class="tab-content" style="padding: 25px;">
+            <h3 style="margin-bottom: 20px;">✅ Graded Submissions</h3>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Student</th>
+                  <th>Assignment</th>
+                  <th>Grade</th>
+                  <th>Feedback</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Hassan Khan</td>
+                  <td>Chapter 1 Problems</td>
+                  <td><span class="badge-success">18/20</span></td>
+                  <td>Excellent work!</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="gradebook" class="tab-content" style="padding: 25px;">
+            <h3 style="margin-bottom: 20px;">📚 Class Gradebook</h3>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Student</th>
+                  <th>Assignments</th>
+                  <th>Quizzes</th>
+                  <th>Final</th>
+                  <th>Grade</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Ahmed Khan</td>
+                  <td>80%</td>
+                  <td>85%</td>
+                  <td>-</td>
+                  <td><span class="badge-success">A</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- QUESTION BANK TAB -->
+      <div id="questionbank" class="tab-content">
+        <div class="page-header">
+          <div class="page-title">🏦 Question Bank Management</div>
+          <div class="page-subtitle">Build and organize reusable questions</div>
+        </div>
+
+        <button class="btn btn-primary" onclick="openModal('questionModal')" style="margin-bottom: 20px;">➕ Add Question</button>
+
+        <h3 style="margin-bottom: 20px; color: white;">📚 Question Categories</h3>
+        <div class="grid-3">
+          <div class="card">
+            <div class="card-title">📌 Algebra Basics</div>
+            <p style="color: #999; margin-top: 5px;">15 Questions</p>
+            <button class="btn btn-primary btn-small" style="margin-top: 10px; width: 100%;">View</button>
+          </div>
+          <div class="card">
+            <div class="card-title">📌 Trigonometry</div>
+            <p style="color: #999; margin-top: 5px;">12 Questions</p>
+            <button class="btn btn-primary btn-small" style="margin-top: 10px; width: 100%;">View</button>
+          </div>
+          <div class="card">
+            <div class="card-title">📌 Calculus</div>
+            <p style="color: #999; margin-top: 5px;">8 Questions</p>
+            <button class="btn btn-primary btn-small" style="margin-top: 10px; width: 100%;">View</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ENROLLMENT TAB -->
+      <div id="enrollment" class="tab-content">
+        <div class="page-header">
+          <div class="page-title">📝 Student Enrollment</div>
+          <div class="page-subtitle">Manage student registrations and access</div>
+        </div>
+
+        <button class="btn btn-primary" onclick="openModal('enrollModal')" style="margin-bottom: 20px;">📋 View Enrollments</button>
+
+        <div class="tabs-container">
+          <div class="tabs-header">
+            <button class="tab-btn active" onclick="switchTab(this, 'active-enroll')">✅ Active (245)</button>
+            <button class="tab-btn" onclick="switchTab(this, 'pending-enroll')">⏳ Pending (8)</button>
+            <button class="tab-btn" onclick="switchTab(this, 'dropped')">❌ Dropped (5)</button>
+          </div>
+
+          <div id="active-enroll" class="tab-content active" style="padding: 25px;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Student Name</th>
+                  <th>Roll No</th>
+                  <th>Course</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Ahmed Khan</td>
+                  <td>001</td>
+                  <td>Mathematics</td>
+                  <td><span class="badge-success">Active</span></td>
+                  <td><button class="btn btn-secondary btn-small">Remove</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="pending-enroll" class="tab-content" style="padding: 25px;">
+            <h3>Pending Enrollment Requests</h3>
+          </div>
+
+          <div id="dropped" class="tab-content" style="padding: 25px;">
+            <h3>Dropped Students</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- ATTENDANCE TAB -->
+      <div id="attendance" class="tab-content">
+        <div class="page-header">
+          <div class="page-title">✓ Attendance Tracking & Management</div>
+          <div class="page-subtitle">Mark and monitor student attendance</div>
+        </div>
+
+        <button class="btn btn-primary" onclick="openModal('attendanceModal')" style="margin-bottom: 20px;">📅 Mark Attendance</button>
+
+        <h3 style="margin-bottom: 20px; color: white;">📊 Attendance Summary</h3>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">📐 Mathematics 10-A</div>
+            <p style="color: #999; margin-top: 5px;">Average: 92%</p>
+            <button class="btn btn-primary btn-small" style="margin-top: 10px; width: 100%;">View Details</button>
+          </div>
+          <div class="card">
+            <div class="card-title">🧬 Biology AP</div>
+            <p style="color: #999; margin-top: 5px;">Average: 88%</p>
+            <button class="btn btn-primary btn-small" style="margin-top: 10px; width: 100%;">View Details</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROGRESS TAB -->
+      <div id="progress" class="tab-content">
+        <div class="page-header">
+          <div class="page-title">📈 Student Progress Monitoring</div>
+          <div class="page-subtitle">Track individual and class progress</div>
+        </div>
+
+        <h3 style="margin-bottom: 20px; color: white;">📊 Progress Dashboard</h3>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Student</th>
+              <th>Completion</th>
+              <th>Performance</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Ahmed Khan</td>
+              <td>
+                <div class="progress-container" style="width: 150px;">
+                  <div class="progress-bar" style="width: 85%;"></div>
+                </div>
+                85%
+              </td>
+              <td>78/100</td>
+              <td><span class="badge-success">On Track</span></td>
+              <td><button class="btn btn-primary btn-small">Details</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- INSIGHTS TAB -->
+      <div id="insights" class="tab-content">
+        <div class="page-header">
+          <div class="page-title">💡 Individual Student Insights</div>
+          <div class="page-subtitle">Deep dive into student performance and behavior</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">👤 Ahmed Khan</div>
+              <p style="color: #999; font-size: 0.85rem; margin-top: 5px;">Roll: 001 | Class 10-A</p>
+            </div>
+          </div>
+          <h4 style="margin-top: 15px; margin-bottom: 10px;">📊 Performance Insights</h4>
+          <ul style="color: #b0b0b0; margin-left: 20px;">
+            <li>Overall Score: 82/100 (Excellent)</li>
+            <li>Strongest Subject: Mathematics (88%)</li>
+            <li>Weakest Subject: English (72%)</li>
+            <li>Learning Speed: Fast (Completes assignments early)</li>
+            <li>Engagement: High (Active in discussions)</li>
+          </ul>
+          <button class="btn btn-primary" style="margin-top: 15px;">📄 Full Report</button>
+        </div>
+      </div>
+
+      <!-- ANALYTICS TAB -->
+      <div id="analytics" class="tab-content">
+        <div class="page-header">
+          <div class="page-title">📊 Performance Analytics Dashboard</div>
+          <div class="page-subtitle">Comprehensive analytics and insights</div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">📈</div>
+            <div class="stat-value">78%</div>
+            <div class="stat-label">Class Average</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">🔝</div>
+            <div class="stat-value">95%</div>
+            <div class="stat-label">Highest Score</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">🔻</div>
+            <div class="stat-value">45%</div>
+            <div class="stat-label">Lowest Score</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">⏱️</div>
+            <div class="stat-value">2.5h</div>
+            <div class="stat-label">Avg Learning Time</div>
+          </div>
+        </div>
+
+        <h3 style="margin-top: 30px; margin-bottom: 20px; color: white;">📊 Analytics Breakdown</h3>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">📈 Subject Performance</div>
+            <ul style="margin-top: 12px; color: #b0b0b0;">
+              <li>Mathematics: 82%</li>
+              <li>English: 75%</li>
+              <li>Science: 88%</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="card-title">👥 Student Distribution</div>
+            <ul style="margin-top: 12px; color: #b0b0b0;">
+              <li>Excellent (80-100): 35%</li>
+              <li>Good (60-79): 45%</li>
+              <li>Average (40-59): 18%</li>
+              <li>Below Avg (&lt;40): 2%</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI TOOLS TAB -->
+      <div id="ai" class="tab-content">
+        <div class="page-header">
+          <div class="page-title">🤖 AI-Powered Teaching Tools</div>
+          <div class="page-subtitle">Leverage AI for better teaching and learning</div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-icon">🧠</div>
+            <div class="card-title">AI Performance Predictions</div>
+            <p style="color: #b0b0b0; margin-top: 8px;">Predict student performance based on historical data</p>
+            <button class="btn btn-primary" style="margin-top: 12px; width: 100%;">🤖 Analyze</button>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">💻</div>
+            <div class="card-title">AI Quiz Generator</div>
+            <p style="color: #b0b0b0; margin-top: 8px;">Auto-generate quizzes from course content</p>
+            <button class="btn btn-primary" style="margin-top: 12px; width: 100%;">🤖 Generate</button>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">📝</div>
+            <div class="card-title">Content Suggestions</div>
+            <p style="color: #b0b0b0; margin-top: 8px;">Get AI recommendations for content and topics</p>
+            <button class="btn btn-primary" style="margin-top: 12px; width: 100%;">💡 Suggest</button>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">🔍</div>
+            <div class="card-title">Plagiarism Detection</div>
+            <p style="color: #b0b0b0; margin-top: 8px;">Detect plagiarism in student submissions</p>
+            <button class="btn btn-primary" style="margin-top: 12px; width: 100%;">🔍 Detect</button>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">🗣️</div>
+            <div class="card-title">Voice-to-Text Notes</div>
+            <p style="color: #b0b0b0; margin-top: 8px;">Convert lecture audio to transcribed notes</p>
+            <button class="btn btn-primary" style="margin-top: 12px; width: 100%;">🎙️ Transcribe</button>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">🌍</div>
+            <div class="card-title">Multi-Language Support</div>
+            <p style="color: #b0b0b0; margin-top: 8px;">Translate content to multiple languages</p>
+            <button class="btn btn-primary" style="margin-top: 12px; width: 100%;">🌐 Translate</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- CERTIFICATES TAB -->
+      <div id="certificates" class="tab-content">
+        <div class="page-header">
+          <div class="page-title">🏆 Certificate Management</div>
+          <div class="page-subtitle">Issue and approve certificates</div>
+        </div>
+
+        <button class="btn btn-primary" onclick="openModal('certModal')" style="margin-bottom: 20px;">📜 Issue Certificate</button>
+
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Student</th>
+              <th>Course</th>
+              <th>Status</th>
+              <th>Completion Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Hassan Khan</td>
+              <td>Complete Mathematics</td>
+              <td><span class="badge-success">Issued</span></td>
+              <td>Mar 15, 2026</td>
+              <td><button class="btn btn-secondary btn-small">View</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- REPORTS TAB -->
+      <div id="reports" class="tab-content">
+        <div class="page-header">
+          <div class="page-title">📄 Report Generation</div>
+          <div class="page-subtitle">Generate PDF and Excel reports</div>
+        </div>
+
+        <button class="btn btn-primary" onclick="openModal('reportModal')" style="margin-bottom: 20px;">📊 Generate Report</button>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">📋 Class Performance Report</div>
+            <p style="color: #999; margin-top: 5px;">Last Generated: Mar 18, 2026</p>
+            <button class="btn btn-primary btn-small" style="margin-top: 10px; width: 100%;">📥 Download PDF</button>
+          </div>
+          <div class="card">
+            <div class="card-title">📊 Attendance Report</div>
+            <p style="color: #999; margin-top: 5px;">Last Generated: Mar 17, 2026</p>
+            <button class="btn btn-primary btn-small" style="margin-top: 10px; width: 100%;">📥 Download Excel</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ANNOUNCEMENTS TAB -->
+      <div id="announcements" class="tab-content">
+        <div class="page-header">
+          <div class="page-title">📢 Announcements & Broadcasting</div>
+          <div class="page-subtitle">Send messages to all students</div>
+        </div>
+
+        <button class="btn btn-primary" onclick="openModal('announcementModal')" style="margin-bottom: 20px;">📢 New Announcement</button>
+
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">📢 Important: Exam Schedule Updated</div>
+              <p style="color: #999; font-size: 0.85rem; margin-top: 5px;">Sent: Mar 18, 2026 | 245 Recipients</p>
+            </div>
+            <span class="badge-success">Published</span>
+          </div>
+          <p style="color: #b0b0b0; margin-top: 12px;">The unit exam has been rescheduled to March 25...</p>
+        </div>
+      </div>
+
+      <!-- CHAT TAB -->
+      <div id="chat" class="tab-content">
+        <div class="page-header">
+          <div class="page-title">💬 In-App Chat with Students</div>
+          <div class="page-subtitle">Direct communication with students</div>
+        </div>
+
+        <div class="grid-2" style="margin-bottom: 20px;">
+          <div class="card">
+            <div class="card-title">Ahmed Khan</div>
+            <p style="color: #999; margin-top: 5px;">Last message: 10 mins ago</p>
+            <button class="btn btn-primary" style="margin-top: 10px; width: 100%;">💬 Open Chat</button>
+          </div>
+          <div class="card">
+            <div class="card-title">Fatima Ali</div>
+            <p style="color: #999; margin-top: 5px;">Last message: 2 hours ago</p>
+            <button class="btn btn-primary" style="margin-top: 10px; width: 100%;">💬 Open Chat</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- FORUM TAB -->
+      <div id="forum" class="tab-content">
+        <div class="page-header">
+          <div class="page-title">💭 Discussion Forum Moderation</div>
+          <div class="page-subtitle">Monitor and manage discussion forums</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">❓ How do we solve quadratic equations?</div>
+              <p style="color: #999; font-size: 0.85rem; margin-top: 5px;">By Ahmed Khan | 5 replies</p>
+            </div>
+            <span class="badge-success">Active</span>
+          </div>
+          <button class="btn btn-primary btn-small" style="margin-top: 10px;">Reply</button>
+        </div>
+      </div>
+
+      <!-- FEEDBACK TAB -->
+      <div id="feedback" class="tab-content">
+        <div class="page-header">
+          <div class="page-title">⭐ Feedback & Remarks System</div>
+          <div class="page-subtitle">Provide feedback to students</div>
+        </div>
+
+        <button class="btn btn-primary" onclick="openModal('feedbackModal')" style="margin-bottom: 20px;">✏️ Add Feedback</button>
+
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Student</th>
+              <th>Feedback</th>
+              <th>Date</th>
+              <th>Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Ahmed Khan</td>
+              <td>Excellent participation in class discussions</td>
+              <td>Mar 19</td>
+              <td><span class="badge-success">Positive</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- PROFILE TAB -->
+      <div id="profile" class="tab-content">
+        <div class="page-header">
+          <div class="page-title">👤 My Profile</div>
+          <div class="page-subtitle">Manage your personal information</div>
+        </div>
+
+        <div style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);border: 2px solid rgba(102, 126, 234, 0.2); padding: 30px; border-radius: 15px;">
+          <div style="text-align: center; margin-bottom: 30px;">
+            <div style="width: 100px; height: 100px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem;">👨‍🏫</div>
+            <div style="font-size: 1.3rem; font-weight: 700; margin-bottom: 5px; color: white;">Prof. Muhammad Ali</div>
+            <div style="color: #999;">Mathematics & Physics | 12 Years Experience</div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-input" value="prof.ali@school.edu" disabled>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Phone</label>
+            <input type="tel" class="form-input" value="+92-300-1234567" disabled>
+          </div>
+
+          <button class="btn btn-primary" onclick="alert('✏️ Edit Profile functionality')">✏️ Edit Profile</button>
+        </div>
+      </div>
+
+      <!-- SETTINGS TAB -->
+      <div id="settings" class="tab-content">
+        <div class="page-header">
+          <div class="page-title">⚙️ Settings & Preferences</div>
+          <div class="page-subtitle">Customize your teaching experience</div>
+        </div>
+
+        <div style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border: 2px solid rgba(102, 126, 234, 0.2); padding: 30px; border-radius: 15px;">
+          <h3 style="margin-bottom: 20px; color: white;">🔔 Notifications</h3>
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid rgba(102, 126, 234, 0.2);">
+            <div>
+              <div style="font-weight: 700; color: white;">Student Submissions</div>
+              <div style="font-size: 0.85rem; color: #999;">Get notified when students submit</div>
+            </div>
+            <input type="checkbox" checked style="width: 20px; height: 20px; cursor: pointer;">
+          </div>
+
+          <h3 style="margin: 30px 0 20px; color: white;">🔒 Security</h3>
+          <button class="btn btn-primary" style="margin-right: 10px;">🔑 Change Password</button>
+          <button class="btn btn-secondary">🛡️ Two-Factor Auth</button>
+        </div>
+      </div>
+
+      <!-- SUPPORT TAB -->
+      <div id="support" class="tab-content">
+        <div class="page-header">
+          <div class="page-title">🆘 Help & Support</div>
+          <div class="page-subtitle">Get help and submit support tickets</div>
+        </div>
+
+        <button class="btn btn-primary" onclick="openModal('supportModal')" style="margin-bottom: 20px;">🎫 Submit Ticket</button>
+
+        <div style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border: 2px solid rgba(102, 126, 234, 0.2); padding: 25px; border-radius: 15px;">
+          <h3 style="margin-bottom: 20px; color: white;">📚 FAQ</h3>
+          <div style="background: rgba(102, 126, 234, 0.1); border-left: 4px solid #667eea; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+            <div style="font-weight: 700; color: white; margin-bottom: 5px;">How do I upload course content?</div>
+            <p style="font-size: 0.9rem; color: #b0b0b0;">Go to Content Upload tab and select your file</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODALS -->
+  <div id="courseModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span>📖 Create New Course</span>
+        <button class="close-modal" onclick="closeModal('courseModal')">×</button>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Course Name</label>
+        <input type="text" class="form-input" placeholder="e.g., Advanced Mathematics">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Description</label>
+        <textarea class="form-textarea" placeholder="Course description..."></textarea>
+      </div>
+      <button class="btn btn-primary" onclick="alert('✅ Course created!'); closeModal('courseModal')" style="width: 100%;">Create Course</button>
+    </div>
+  </div>
+
+  <div id="uploadModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span>📤 Upload Content</span>
+        <button class="close-modal" onclick="closeModal('uploadModal')">×</button>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Select File Type</label>
+        <select class="form-select">
+          <option>🎥 Video</option>
+          <option>📄 PDF</option>
+          <option>📊 Document</option>
+          <option>📸 Image</option>
+        </select>
+      </div>
+      <button class="btn btn-primary" onclick="alert('✅ File uploaded!'); closeModal('uploadModal')" style="width: 100%;">Upload</button>
+    </div>
+  </div>
+
+  <div id="gradeModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span>📝 Grade Assignment</span>
+        <button class="close-modal" onclick="closeModal('gradeModal')">×</button>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Score</label>
+        <input type="number" class="form-input" placeholder="e.g., 18" max="20">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Feedback</label>
+        <textarea class="form-textarea" placeholder="Provide feedback..."></textarea>
+      </div>
+      <button class="btn btn-primary" onclick="alert('✅ Graded!'); closeModal('gradeModal')" style="width: 100%;">Submit Grade</button>
+    </div>
+  </div>
+
+  <script>
+    function showTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      document.querySelectorAll('.menu-item a').forEach(a => a.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+
+    function switchTab(btn, contentId) {
+      const container = btn.parentElement.parentElement;
+      container.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      container.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(contentId).classList.add('active');
+    }
+
+    function openModal(modalId) {
+      document.getElementById(modalId).classList.add('show');
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.remove('show');
+    }
+
+    function logout() {
+      if (confirm('Are you sure you want to logout?')) {
+        window.location.href = 'index-advanced.html';
+      }
+    }
+
+    window.onclick = function(event) {
+      if (event.target.classList.contains('modal')) {
+        event.target.classList.remove('show');
+      }
+    }
+  </script>
+</body>
+</html>
